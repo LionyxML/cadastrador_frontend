@@ -16,11 +16,11 @@
             </router-link>
           </li>
           <li class="nav-item">
-            <router-link to="/login" class="nav-link">Login
+            <router-link to="/login" class="nav-link">Entrar
             </router-link>
           </li>
           <li class="nav-item">
-            <router-link to="/register" class="nav-link">Registro
+            <router-link to="/register" class="nav-link">Cadastro
             </router-link>
           </li>
           <li class="nav-item">
@@ -28,7 +28,7 @@
             </router-link>
           </li>
           <li class="nav-item">
-            <a href="/logout" class="nav-link">Logout 
+            <a href="/logout" class="nav-link">Logout
             </a>
           </li>
         </ul>
