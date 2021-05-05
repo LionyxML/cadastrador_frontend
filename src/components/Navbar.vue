@@ -15,20 +15,20 @@
             <router-link to="/about" class="nav-link">Sobre
             </router-link>
           </li>
-          <li class="nav-item">
+          <li class="nav-item" v-if="!isLoggedIn">
             <router-link to="/login" class="nav-link">Entrar
             </router-link>
           </li>
-          <li class="nav-item">
+          <li class="nav-item" v-if="!isLoggedIn">
             <router-link to="/register" class="nav-link">Cadastro
             </router-link>
           </li>
-          <li class="nav-item">
+          <li class="nav-item" v-if="isLoggedIn">
             <router-link to="/profile" class="nav-link">Perfil
             </router-link>
           </li>
-          <li class="nav-item">
-            <a href="/logout" class="nav-link">Logout
+          <li class="nav-item" v-if="isLoggedIn">
+            <a href="/logout" class="nav-link" @click.prevent="logoutUser">Sair
             </a>
           </li>
         </ul>
@@ -38,7 +38,17 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from "vuex";
 export default {
+  computed: {
+    ...mapGetters(["isLoggedIn"])
+  },
+  methods: {
+    ...mapActions(['logout']),
+    logoutUser() {
+      this.logout();
+    }
+  }
 };
 </script>
 

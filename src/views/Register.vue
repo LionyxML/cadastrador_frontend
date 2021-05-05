@@ -7,7 +7,7 @@
           <h4>Cadastro</h4>
         </div>
         <div class="card-body">
-          <form>
+          <form @submit.prevent="registerUser">
             <div class="form-group">
               <label for="usuario">Usuário:</label>
               <input
@@ -107,7 +107,7 @@
                class="form-control mb-2"
                >
             </div>
-            <button class="btn btn-primary mt-2 ">Enviar</button>
+            <input type="submit" class="btn btn-primary mt-2" value="Enviar">
             <br>
             <router-link to="/login" class="card-link mt-2">Já é cadastrado?</router-link>
           </form>
@@ -118,6 +118,7 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
 export default {
   data() {
     return {
@@ -131,6 +132,27 @@ export default {
       senha: "",
       senhaRepetida: ""
     };
+  },
+  methods: {
+    ...mapActions(['register']),
+    registerUser() {
+        let usuario = {
+          nome: this.nome,
+          sobrenome: this.sobrenome,
+          nascimento: this.nascimento,
+          telefone: this.telefone,
+          endereco: this.endereco,
+          email: this.email,
+          usuario: this.usuario,
+          senha: this.senha,
+          senhaRepetida: this.senhaRepetida
+        };
+        this.register(usuario).then(res => {
+          if(res.data.success){
+            this.$router.push('/login');
+          }
+        });
+    }
   }
 }
 </script>
