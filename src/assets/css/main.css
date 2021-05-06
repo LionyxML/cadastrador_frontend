@@ -1,0 +1,12 @@
+.container {
+  margin: 20px auto;
+  padding: 20px;
+  color: black;
+  background-color: #c1c1c1;
+}
+
+body {
+  background: url(../images/back.jpg) no-repeat center center fixed;
+  background-color: #464646;
+  background-size: cover;
+}

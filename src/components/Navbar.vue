@@ -11,16 +11,12 @@
             <router-link to="/" class="nav-link">Home
             </router-link>
           </li>
-          <li class="nav-item">
-            <router-link to="/about" class="nav-link">Sobre
-            </router-link>
-          </li>
           <li class="nav-item" v-if="!isLoggedIn">
             <router-link to="/login" class="nav-link">Entrar
             </router-link>
           </li>
           <li class="nav-item" v-if="!isLoggedIn">
-            <router-link to="/register" class="nav-link">Cadastro
+            <router-link to="/register" class="nav-link">Cadastrar
             </router-link>
           </li>
           <li class="nav-item" v-if="isLoggedIn">

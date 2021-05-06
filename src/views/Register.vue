@@ -1,6 +1,5 @@
 <template lang="html">
-  <div class="">
-    <h2>Cadastro</h2>
+  <div class="contariner mt-3">
     <div class="row">
       <div class="card w-75 mx-auto p-0">
         <div class="card-header text-white bg-primary">
