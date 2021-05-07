@@ -88,7 +88,6 @@
                name="telefone"
                v-model="telefone"
                class="form-control mb-2"
-               pattern="\d*"
                required
                >
             </div>
