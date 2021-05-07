@@ -176,6 +176,9 @@ export default {
         });
     }
   },
+  beforeDestroy() {
+    this.$store.dispatch('resetState');
+  },
   computed : {
     ...mapGetters(["error"])
   },

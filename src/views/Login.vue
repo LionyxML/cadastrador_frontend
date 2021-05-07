@@ -58,7 +58,7 @@
      return {
        usuario: "",
        senha: "",
-       data: this.$route.params.data
+       data: this.$route.params.data,
      }
    },
    methods: {
@@ -82,6 +82,9 @@
    },
    created() {
 
+   },
+   beforeDestroy() {
+     this.$store.dispatch('resetState');
    },
    computed : {
      ...mapGetters(["error"])

@@ -82,11 +82,16 @@ const actions = {
     delete axios.defaults.headers.common['Authorization'];
     router.push('/login')
     return
-  }
-
+  },
+    resetState({commit}) {
+    commit('RESET_STATE');
+  },
 };
 
 const mutations = {
+  RESET_STATE(state) {
+    state.error = null;
+  },
   auth_request(state){
     state.status = 'loading'
   },
@@ -120,7 +125,7 @@ const mutations = {
   },
   auth_error(state, err){
     state.error = err.response.data.msg
-  }
+  },
 };
 
 

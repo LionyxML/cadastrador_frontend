@@ -12,7 +12,7 @@
         <li class="list-group-item"><div class="esquerda"><strong>Nascimento:</strong></div><div class="direita"> {{ usuario.nascimento }}</div></li>
         <li class="list-group-item"><div class="esquerda"><strong>Endereço:</strong></div><div class="direita"> {{ usuario.endereco }}</div></li>
         <li class="list-group-item"><div class="esquerda"><strong>Telefone:</strong></div><div class="direita"> {{ usuario.telefone }}</div></li>
-        <li class="list-group-item"><div class="esquerda"><strong>Avatar:</strong></div><div class="direita"><img class="img-thumbnail" :key="keyImg" :src="'http://localhost:5000/uploads/' + usuario.avatar" width="150" height="150"></div></li>
+        <li class="list-group-item"><div class="esquerda"><strong>Avatar:</strong></div><div class="direita"><img class="img-thumbnail" :key="keyImg" :src="'http://localhost:5000/uploads/' + usuario.avatar + '?=' + keyImg" width="150" height="150"></div></li>
         <li class="list-group-item">
           <div class="p-3">
             <p> Suas informações estão "seguras", mas ainda <strong>não</strong> é possível alterá-las.</p>
@@ -97,7 +97,6 @@ export default {
     return {
       file: "",
       message: "",
-      error: false,
       keyImg: 0
     }
   }
