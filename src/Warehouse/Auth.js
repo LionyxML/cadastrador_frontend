@@ -4,7 +4,8 @@ import router from '../router/';
 const state = {
   token: localStorage.getItem('token') || '',
   usuario: {},
-  status: ''
+  status: '',
+  error: ''
 };
 
 const getters = {
@@ -17,7 +18,9 @@ const getters = {
   // }
   isLoggedIn: state => !!state.token,
   authState: state => state.status,
-  usuario: state => state.usuario
+  usuario: state => state.usuario,
+  error: state => state.error
+
 };
 
 const actions = {
@@ -26,32 +29,40 @@ const actions = {
     commit
   }, usuario) {
     commit('auth_request');
-    let res = await axios.post('http://localhost:5000/api/users/login', usuario)
-    if(res.data.success){
-      const token = res.data.token;
-      const usuario = res.data.usuario;
+      try {
+      let res = await axios.post('http://localhost:5000/api/users/login', usuario)
+      if(res.data.success){
+        const token = res.data.token;
+        const usuario = res.data.usuario;
 
-      // Salva o token no storage local
-      localStorage.setItem('token', token);
+        // Salva o token no storage local
+        localStorage.setItem('token', token);
 
-      // Seta os padrões do axios
-      axios.defaults.headers.common['Authorization'] = token;
-      commit('auth_success', token, usuario);
+        // Seta os padrões do axios
+        axios.defaults.headers.common['Authorization'] = token;
+        commit('auth_success', token, usuario);
 
-    }
-    return res;
-  },
+      }
+      return res;
+  } catch (err) {
+    commit('auth_error', err);
+  }
+},
 
   // Registro (Cadastro) do usuário
   async register({
     commit
   }, userData){
-    commit('register_request');
-    let res = await axios.post('http://localhost:5000/api/users/register', userData);
-    if(res.data.success !==  undefined) {
-      commit('register_success');
+    try{
+      commit('register_request');
+      let res = await axios.post('http://localhost:5000/api/users/register', userData);
+      if(res.data.success !==  undefined) {
+        commit('register_success');
+      }
+      return res;
+    } catch(err) {
+        commit('register_error', err)
     }
-    return res;
   },
 
   // Pega o perfil do usuário
@@ -83,12 +94,15 @@ const mutations = {
       state.token = token
       state.usuario = usuario
       state.status = 'success'
+      state.error = null
     },
   register_request(state){
     state.status = 'loading'
   },
   register_success(state){
     state.status = 'success'
+    state.error = null
+
   },
   logout(state){
     state.status = ''
@@ -100,6 +114,12 @@ const mutations = {
   },
   user_profile(state, usuario){
     state.usuario = usuario
+  },
+  register_error(state, err){
+    state.error = err.response.data.msg
+  },
+  auth_error(state, err){
+    state.error = err.response.data.msg
   }
 };
 

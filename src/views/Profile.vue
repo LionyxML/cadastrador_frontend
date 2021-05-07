@@ -1,18 +1,18 @@
 <template lang="html">
-  <div class="contariner">
+  <div class="contariner col-md-6 mx-auto">
     <div class="card mx-auto p-0 mt-3" v-if="usuario">
-      <div class="card-header text-white bg-primary">
+      <div class="card-header text-white bg-success">
         <h4>Perfil</h4>
       </div>
       <ul class="list-group">
-        <li class="list-group-item"><strong>Email:</strong> {{ usuario.email }}</li>
-        <li class="list-group-item"><strong>Usuário:</strong> {{ usuario.usuario }}</li>
-        <li class="list-group-item"><strong>Nome:</strong> {{ usuario.nome }}</li>
-        <li class="list-group-item"><strong>Sobrenome:</strong> {{ usuario.sobrenome }}</li>
-        <li class="list-group-item"><strong>Nascimento:</strong> {{ usuario.nascimento }}</li>
-        <li class="list-group-item"><strong>Endereço:</strong> {{ usuario.endereco }}</li>
-        <li class="list-group-item"><strong>Telefone:</strong> {{ usuario.telefone }}</li>
-        <li class="list-group-item"><strong>Avatar:</strong><img :key="keyImg" :src="'http://localhost:5000/uploads/' + usuario.avatar" width="150" height="150"></li>
+        <li class="list-group-item"><div class="esquerda"><strong>Email:</strong></div><div class="direita">{{ usuario.email }}</div></li>
+        <li class="list-group-item"><div class="esquerda"><strong>Usuário:</strong></div><div class="direita"> {{ usuario.usuario }}</div></li>
+        <li class="list-group-item"><div class="esquerda"><strong>Nome:</strong></div><div class="direita"> {{ usuario.nome }}</div></li>
+        <li class="list-group-item"><div class="esquerda"><strong>Sobrenome:</strong></div><div class="direita"> {{ usuario.sobrenome }}</div></li>
+        <li class="list-group-item"><div class="esquerda"><strong>Nascimento:</strong></div><div class="direita"> {{ usuario.nascimento }}</div></li>
+        <li class="list-group-item"><div class="esquerda"><strong>Endereço:</strong></div><div class="direita"> {{ usuario.endereco }}</div></li>
+        <li class="list-group-item"><div class="esquerda"><strong>Telefone:</strong></div><div class="direita"> {{ usuario.telefone }}</div></li>
+        <li class="list-group-item"><div class="esquerda"><strong>Avatar:</strong></div><div class="direita"><img class="img-thumbnail" :key="keyImg" :src="'http://localhost:5000/uploads/' + usuario.avatar" width="150" height="150"></div></li>
         <li class="list-group-item">
           <div class="p-3">
             <p> Suas informações estão "seguras", mas ainda <strong>não</strong> é possível alterá-las.</p>
@@ -26,7 +26,7 @@
               </div>
               <div class="input-group">
                   <input ref="file" type="file" class="form-control" @change="selectFile"/>
-                  <button type="submit" class="btn btn-outline-secondary">Enviar</button>
+                  <button type="submit" class="btn btn-success">Enviar</button>
               </div>
             </form>
           </div>
@@ -49,7 +49,6 @@ export default {
 
     forceRerender() {
      this.keyImg += 1;
-     console.log(this.keyImg);
    },
 
     selectFile(){
@@ -106,4 +105,10 @@ export default {
 </script>
 
 <style lang="css" scoped>
+.esquerda {
+  float: left;
+}
+.direita {
+  float: right;
+}
 </style>

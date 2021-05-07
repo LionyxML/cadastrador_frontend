@@ -1,24 +1,15 @@
-# cadastrador_frontend
+# Cadastrador (Frontend)
 
-## Project setup
+Aplicação de frontend para o backend de mesmo nome. Permite cadastrar usuário, logar com autenticação, fazer upload de foto e visualizar perfil.
+
+Utiliza VueJS, Vuex(até onde consegui no momento), Bootstrap5.
+
+## Setup
 ```
 npm install
 ```
 
-### Compiles and hot-reloads for development
+## Compilar e rodar o servidor de desenvolvimento
 ```
 npm run serve
 ```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).

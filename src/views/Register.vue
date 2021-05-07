@@ -1,8 +1,8 @@
 <template lang="html">
-  <div class="contariner mt-3">
+  <div class="contariner mt-3 col-md-6 mx-auto">
     <div class="row">
       <div class="card w-75 mx-auto p-0">
-        <div class="card-header text-white bg-primary">
+        <div class="card-header text-white bg-success">
           <h4>Cadastro</h4>
         </div>
         <div class="card-body">
@@ -16,6 +16,7 @@
                name="usuario"
                v-model="usuario"
                class="form-control mb-2"
+               required
                >
             </div>
             <div class="form-group">
@@ -27,6 +28,7 @@
                name="senha"
                v-model="senha"
                class="form-control mb-2"
+               required
                >
             </div>
             <div class="form-group">
@@ -38,6 +40,7 @@
                name="senhaRepetida"
                v-model="senhaRepetida"
                class="form-control mb-2"
+               required
                >
             </div>
             <div class="form-group">
@@ -49,6 +52,7 @@
                name="email"
                v-model="email"
                class="form-control mb-2"
+               required
                >
             </div>
             <div class="form-group">
@@ -60,6 +64,7 @@
                name="nome"
                v-model="nome"
                class="form-control mb-2"
+               required
                >
             </div>
             <div class="form-group">
@@ -71,6 +76,7 @@
                name="sobrenome"
                v-model="sobrenome"
                class="form-control mb-2"
+               required
                >
             </div>
             <div class="form-group">
@@ -82,6 +88,7 @@
                name="telefone"
                v-model="telefone"
                class="form-control mb-2"
+               required
                >
             </div>
             <div class="form-group">
@@ -93,6 +100,7 @@
                name="nascimento"
                v-model="nascimento"
                class="form-control mb-2"
+               required
                >
             </div>
             <div class="form-group">
@@ -104,11 +112,17 @@
                name="nome"
                v-model="endereco"
                class="form-control mb-2"
+               required
                >
             </div>
-            <input type="submit" class="btn btn-primary mt-2" value="Enviar">
-            <br>
-            <router-link to="/login" class="card-link mt-2">Já é cadastrado?</router-link>
+            <div class="d-grid gap-2 col-6 mx-auto">
+              <input type="submit" class="btn btn-success mt-2" value="Enviar">
+              <router-link to="/login" class="card-link text-center">Já é cadastrado?</router-link>
+            </div>
+            <div v-if="error"
+              class="mt-2 alert alert-danger text-center">
+              {{ error }}
+            </div>
           </form>
         </div>
       </div>
@@ -117,6 +131,7 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 import { mapActions } from "vuex";
 export default {
   data() {
@@ -129,7 +144,7 @@ export default {
       email: "",
       usuario: "",
       senha: "",
-      senhaRepetida: ""
+      senhaRepetida: "",
     };
   },
   methods: {
@@ -148,11 +163,21 @@ export default {
         };
         this.register(usuario).then(res => {
           if(res.data.success){
-            this.$router.push('/login');
+            this.$router.push({
+              name: 'login',
+              params: {
+                data: this.usuario + " foi registrado com sucesso! Pode entrar!"
+              }
+            });
           }
+        }).catch (err => {
+            console.log(this.msg)
         });
     }
-  }
+  },
+  computed : {
+    ...mapGetters(["error"])
+  },
 }
 </script>
 

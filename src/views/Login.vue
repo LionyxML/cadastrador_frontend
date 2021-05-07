@@ -1,8 +1,8 @@
  <template lang="html">
-   <div class="container mt-3">
+   <div class="container mt-3 col-md-6">
      <div class="row">
        <div class="card w-75 mx-auto p-0">
-         <div class="card-header text-white bg-primary">
+         <div class="card-header text-white bg-success">
            <h4>Entrar</h4>
          </div>
          <div class="card-body">
@@ -16,6 +16,7 @@
                 name="usuario"
                 v-model="usuario"
                 class="form-control"
+                required
                 >
              </div>
              <div class="form-group">
@@ -27,11 +28,21 @@
                 name="senha"
                 v-model="senha"
                 class="form-control"
+                required
                 >
              </div>
-             <input type="submit" class="btn btn-primary mt-2" value="Acessar">
-             <br>
-             <router-link to="/register" class="card-link">Ainda não se cadastrou?</router-link>
+             <div class="d-grid gap-2 col-6 mx-auto">
+               <input type="submit" class="btn btn-success mt-2" value="Acessar">
+               <router-link to="/register" class="card-link text-center">Sem cadastro?</router-link>
+             </div>
+             <div v-if="error"
+               class="mt-2 alert alert-danger text-center">
+               {{ error }}
+             </div>
+             <div v-if="this.data"
+               class="mt-2 alert alert-success text-center">
+               {{ this.data }}
+             </div>
            </form>
          </div>
        </div>
@@ -40,12 +51,14 @@
  </template>
 
  <script>
+ import { mapGetters } from "vuex";
  import { mapActions } from "vuex";
  export default {
    data() {
      return {
        usuario: "",
-       senha: ""
+       senha: "",
+       data: this.$route.params.data
      }
    },
    methods: {
@@ -63,10 +76,16 @@
            this.$router.push("/profile");
          }
          }).catch(err => {
-           console.log(err)
+
          });
      }
-   }
+   },
+   created() {
+
+   },
+   computed : {
+     ...mapGetters(["error"])
+   },
  };
 
  </script>

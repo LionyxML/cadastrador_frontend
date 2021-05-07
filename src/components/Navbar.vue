@@ -1,7 +1,8 @@
 <template lang="html">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
-      <router-link class="navbar-brand" to="/">Cadastrador</router-link>
+      <router-link class="navbar-brand" to="/">
+        <img id="img_logo" src="../assets/images/logo.svg" class="img-thumbnail bg-dark mx-3" alt="logo" width="40" height="40">Cadastrador</router-link>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
