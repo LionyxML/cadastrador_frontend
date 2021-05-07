@@ -1,10 +1,12 @@
 <template>
   <div class="home">
-    <div class="container shadow-lg p-3 mb-5 bg-white rounded-3 col-md-6">
+    <div class="container p-3 mb-5 rounded-3 col-md-6">
       <div class="row">
         <div class="col">
-          <h2 class="text-center p-2">Olá, bem vindo ao cadastrador!</h2>
-          <h4 class="text-center p-2">Um jeito simples de cadastrar seus dados e enviar uma foto de avatar</h4>
+          <div class="jumbotron">
+            <h1 class="text-center p-2">O cadastrador chegou!</h1>
+            <h4 class="text-center p-2">Aqui você se cadastra!</h4>
+          </div>
           <div class="d-grid gap-2 col-6 mx-auto" v-if="!isLoggedIn">
             <router-link to="/login" class="btn btn-success">Entrar</router-link>
             <router-link to="/register" class="btn btn-success">Cadastrar</router-link>
@@ -32,6 +34,14 @@ body {
   padding: 20px;
   color: black;
 }
+
+.jumbotron {
+   padding: 4rem 2rem;
+   margin-bottom: 2rem;
+   color: white;
+   background-color: rgba(0, 0, 0, 0.5);
+   border-radius: .3rem;
+ }
 
 </style>
 <script>
